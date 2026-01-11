@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garb Podcast - DTC Apparel Insights + Social Pack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0b0b0f;
+      --cream: #f7f2ea;
+      --sand: #e6d8c7;
+      --clay: #c77f5a;
+      --moss: #3d5348;
+      --sun: #f2c14e;
+      --accent: #f2634b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at 10% 10%, rgba(242, 193, 78, 0.25), transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(199, 127, 90, 0.35), transparent 45%),
+        linear-gradient(180deg, #f7f2ea 0%, #efe6da 100%);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" stitchTiles="stitch"/></filter><rect width="160" height="160" filter="url(%23n)" opacity="0.08"/></svg>');
+      opacity: 0.35;
+      mix-blend-mode: multiply;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 2.5rem 4rem;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-size: 1.4rem;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--clay), var(--accent));
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      font-family: 'Fraunces', serif;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: var(--ink);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 3rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fff7eb;
+      border: 1px solid rgba(199, 127, 90, 0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--moss);
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.4rem);
+      line-height: 1.05;
+      margin: 1rem 0 1.2rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: rgba(11, 11, 15, 0.8);
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 1.6rem;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(242, 99, 75, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(11, 11, 15, 0.15);
+      color: var(--ink);
+      background: #fff;
+    }
+
+    .hero-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 25px 45px rgba(15, 15, 20, 0.12);
+      position: relative;
+      overflow: hidden;
+      animation: floatUp 1s ease-out;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(242, 193, 78, 0.5) 0%, transparent 70%);
+    }
+
+    .hero-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .pack-list {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1.2rem;
+      font-weight: 500;
+    }
+
+    .pack-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #f7f2ea;
+      border-radius: 12px;
+      padding: 0.75rem 0.85rem;
+    }
+
+    .pack-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--clay);
+    }
+
+    .sections {
+      margin-top: 5rem;
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 1.6rem;
+      box-shadow: 0 16px 30px rgba(15, 15, 20, 0.08);
+      border: 1px solid rgba(11, 11, 15, 0.08);
+      min-height: 180px;
+    }
+
+    .info-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      font-family: 'Fraunces', serif;
+    }
+
+    .info-card p {
+      color: rgba(11, 11, 15, 0.75);
+      line-height: 1.6;
+    }
+
+    .banner {
+      background: linear-gradient(120deg, #101217, #2d2f3a);
+      color: #fff;
+      padding: 2.5rem;
+      border-radius: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      box-shadow: 0 28px 45px rgba(15, 15, 20, 0.25);
+    }
+
+    .banner h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.9rem;
+      max-width: 520px;
+    }
+
+    .banner p {
+      max-width: 480px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 0.75rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      color: rgba(11, 11, 15, 0.6);
+      font-size: 0.9rem;
+    }
+
+    @keyframes floatUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .wrapper {
+        padding: 2rem 1.5rem 3rem;
+      }
+
+      .banner {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="wrapper">
+    <nav class="nav">
+      <div class="logo">
+        <div class="logo-mark">G</div>
+        Garb
+      </div>
+      <div class="nav-links">
+        <a href="#insights">Insights</a>
+        <a href="#social-pack">Social Pack</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Podcast for DTC apparel builders</span>
+        <h1>Garb delivers the apparel playbook and the content to keep you top of feed.</h1>
+        <p>
+          Each episode is built for operators in DTC apparel. We cover merchandising, product drops, returns,
+          supply chain, and brand community with founders and growth teams who actually ship.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="mailto:hello@garb.fm">Get the Social Pack</a>
+          <a class="btn btn-secondary" href="mailto:hello@garb.fm">Sponsor or guest</a>
+        </div>
+      </div>
+      <div class="hero-card" id="social-pack">
+        <h3>The Social Pack</h3>
+        <p>Episode assets you can post the same day to promote your brand or service.</p>
+        <div class="pack-list">
+          <div class="pack-item"><span class="pack-dot"></span>Quote cards + founder pull quotes</div>
+          <div class="pack-item"><span class="pack-dot"></span>Short-form clips formatted for Reels, TikTok, Shorts</div>
+          <div class="pack-item"><span class="pack-dot"></span>Pre-written caption hooks with CTAs</div>
+          <div class="pack-item"><span class="pack-dot"></span>Podcast cover art personalized with your brand</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sections" id="insights">
+      <div class="section-grid">
+        <div class="info-card">
+          <h4>Niche insights only</h4>
+          <p>Every episode is focused on apparel: sizing, materials, fit feedback, inventory planning, and drop strategy.</p>
+        </div>
+        <div class="info-card">
+          <h4>Operators first</h4>
+          <p>Hear from founders, heads of growth, and merch leads who are building DTC brands week to week.</p>
+        </div>
+        <div class="info-card">
+          <h4>Actionable takeaways</h4>
+          <p>We capture the frameworks, tooling, and channel tactics so you can test and deploy quickly.</p>
+        </div>
+        <div class="info-card">
+          <h4>Community-ready assets</h4>
+          <p>Share the Social Pack in your feeds, newsletters, and brand community to drive momentum.</p>
+        </div>
+      </div>
+
+      <div class="banner" id="contact">
+        <div>
+          <h3>Launch your next apparel story with a podcast that is built for your audience.</h3>
+          <p>Apply to be featured, sponsor an episode, or request a Social Pack demo in under 24 hours.</p>
+        </div>
+        <a class="btn btn-primary" href="mailto:hello@garb.fm">Book a slot</a>
+      </div>
+    </section>
+
+    <footer>
+      Garb Podcast. Apparel, distribution, and community for DTC teams.
+    </footer>
+  </div>
+</body>
+</html>
